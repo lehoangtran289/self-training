@@ -31,16 +31,21 @@ public class SkipList<K extends Comparable<K>, V> {
     }
 
     public V search(K searchKey) {
+        int cnt = 0;
         Node<K, V> ptr = this.head;
         for (int i = level; i >= 0; i--) {
             while (ptr.forward[i] != null && searchKey.compareTo(ptr.forward[i].key()) > 0) {
                 ptr = ptr.forward[i];
+                cnt++;
             }
+            cnt++;
         }
         ptr = ptr.forward[0];
         if (ptr != null && searchKey.compareTo(ptr.key()) == 0) {
+            System.out.println("search path = " + cnt);
             return ptr.value();
         } else {
+            System.out.println("Key not found");
             return null;
         }
     }
@@ -101,6 +106,7 @@ public class SkipList<K extends Comparable<K>, V> {
     // =======================
 
     public void printSkipList() {
+        System.out.println("Skip list current level: " + level);
         System.out.println("\nSkip list ");
         for (int i = level; i >= 0; --i) {
             Node<K, V> ptr = head.forward[i];

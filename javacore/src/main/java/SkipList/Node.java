@@ -29,6 +29,14 @@ public class Node<K extends Comparable<K>, V> {
         Arrays.fill(forward, null);
     }
 
+    @Override
+    public String toString() {
+        return "Node{" +
+                "key=" + key +
+                ", value=" + value +
+                '}';
+    }
+
     public void printForwards(int level) {
         for (int i = level; i >= 0; --i) {
             if (this.forward[i] == null) {

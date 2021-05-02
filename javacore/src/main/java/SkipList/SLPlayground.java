@@ -14,6 +14,7 @@ public class SLPlayground {
                 sl.printSkipList();
 
                 System.out.println("search for key=" + 178 + " -> " + sl.search(178));
+                System.out.println("search for key=" + 1001 + " -> " + sl.search(1001));
             } catch (Exception e) {
                 e.printStackTrace();
                 fail++;
