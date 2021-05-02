@@ -1,4 +1,4 @@
-package SkipList3;
+package ref.SkipList3;
 
 public class SkipNode3<Key, E> {
     private final E element;

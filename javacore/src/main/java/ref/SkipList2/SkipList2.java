@@ -1,4 +1,4 @@
-package SkipList2;
+package ref.SkipList2;
 
 import java.util.*;
 

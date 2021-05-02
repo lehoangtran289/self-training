@@ -1,4 +1,4 @@
-package SkipList4;
+package SkipList;
 
 public class SLPlayground {
     public static void main(String[] args) {
@@ -14,7 +14,9 @@ public class SLPlayground {
                 sl.insert(10, "Ten10");
                 sl.printSkipList();
 
-                sl.printLevel0();
+                sl.delete(5);
+                sl.delete(4);
+                sl.printSkipList();
 
                 System.out.println(sl.search(10));
             } catch (Exception e) {
@@ -22,6 +24,5 @@ public class SLPlayground {
                 fail++;
             }
         }
-        System.out.println(fail);
     }
 }

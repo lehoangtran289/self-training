@@ -1,7 +1,6 @@
-package SkipList3;
+package ref.SkipList3;
 
 import java.util.*;
-import java.math.*;
 
 /**
  * A bunch of utility functions.

@@ -1,10 +1,7 @@
-package SkipList4;
-
-import java.util.Random;
+package SkipList;
 
 @SuppressWarnings("unchecked")
 public class SkipList<K extends Comparable<K>, V> {
-    public static final Random randomGenerator = new Random();
     public static final double DEFAULT_PROBABILITY = 0.5;
     public static final int MAX_LEVEL = 16; // If p = 1/2, using MaxLevel = 16
     private final double probability;
@@ -63,7 +60,6 @@ public class SkipList<K extends Comparable<K>, V> {
         } else {
             int newLevel = getRandomLevel();
             if (newLevel > level) {
-//                adjustHead(newLevel);
                 for (int i = level + 1; i <= newLevel; i++) {
                     update[i] = head;
                 }
@@ -114,15 +110,6 @@ public class SkipList<K extends Comparable<K>, V> {
                 ptr = ptr.forward[i];
             }
             System.out.println();
-        }
-    }
-
-    public void printLevel0() {
-        System.out.println("\nSkipList level 0");
-        Node<K, V> ptr = this.head;
-        while (ptr.forward[0] != null) {
-            ptr = ptr.forward[0];
-            System.out.println("(" + ptr.key() + ", " + ptr.value() + ")");
         }
     }
 }

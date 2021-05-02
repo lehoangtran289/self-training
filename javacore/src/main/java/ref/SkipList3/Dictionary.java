@@ -1,4 +1,4 @@
-package SkipList3;
+package ref.SkipList3;
 
 public interface Dictionary<Key, E> {
 

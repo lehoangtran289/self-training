@@ -1,4 +1,4 @@
-package SkipList3;
+package ref.SkipList3;
 
 class SkipList3<Key extends Comparable<? super Key>, E> implements Dictionary<Key, E> {
     private SkipNode3<Key, E> head;

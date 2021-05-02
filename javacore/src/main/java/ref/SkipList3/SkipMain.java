@@ -1,6 +1,4 @@
-package SkipList3;
-
-import SkipList4.SkipList;
+package ref.SkipList3;
 
 import java.io.IOException;
 
