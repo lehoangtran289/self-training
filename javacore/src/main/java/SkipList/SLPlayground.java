@@ -5,7 +5,7 @@ public class SLPlayground {
         int fail = 0;
         for (int i = 0; i < 1; i++) {
             try {
-                SkipList<Integer, String> sl = new SkipList<>();
+                SkipList<Integer, String> sl = new SkipList<Integer, String>();
                 sl.insert(1, "One");
                 sl.insert(4, "Four");
                 sl.insert(10, "Ten");
