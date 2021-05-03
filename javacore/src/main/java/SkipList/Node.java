@@ -25,7 +25,7 @@ public class Node<K extends Comparable<K>, V> {
     public Node(K key, V value, int level) {
         this.key = key;
         this.value = value;
-        forward = (Node<K, V>[]) new Node[MAX_LEVEL];
+        forward = (Node<K, V>[]) new Node[MAX_LEVEL + 1];
         Arrays.fill(forward, null);
     }
 

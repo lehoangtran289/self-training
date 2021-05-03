@@ -3,7 +3,7 @@ package SkipList;
 @SuppressWarnings("unchecked")
 public class SkipList<K extends Comparable<K>, V> {
     public static final double DEFAULT_PROBABILITY = 0.5;
-    public static final int MAX_LEVEL = 16; // If p = 1/2, using MaxLevel = 16
+    public static final int MAX_LEVEL = 20; // If p = 1/2, using MaxLevel = 16
     private final double probability;
 
     // fields
@@ -42,16 +42,16 @@ public class SkipList<K extends Comparable<K>, V> {
         }
         ptr = ptr.forward[0];
         if (ptr != null && searchKey.compareTo(ptr.key()) == 0) {
-            System.out.println("search path = " + cnt);
+//            System.out.println("search path = " + cnt);
             return ptr.value();
         } else {
-            System.out.println("Key not found");
+//            System.out.println("Key not found");
             return null;
         }
     }
 
     public void insert(K key, V value) {
-        Node<K, V>[] update = (Node<K, V>[]) new Node[MAX_LEVEL];
+        Node<K, V>[] update = (Node<K, V>[]) new Node[MAX_LEVEL + 1];
         Node<K, V> ptr = this.head;
         for (int i = level; i >= 0; i--) {
             while (ptr.forward[i] != null && key.compareTo(ptr.forward[i].key()) > 0) {
@@ -80,7 +80,7 @@ public class SkipList<K extends Comparable<K>, V> {
     }
 
     public void delete(K key) {
-        Node<K, V>[] update = (Node<K, V>[]) new Node[MAX_LEVEL];
+        Node<K, V>[] update = (Node<K, V>[]) new Node[MAX_LEVEL + 1];
         Node<K, V> ptr = this.head;
         for (int i = level; i >= 0; --i) {
             while (ptr.forward[i] != null && key.compareTo(ptr.forward[i].key()) > 0) {
