@@ -1,7 +1,9 @@
-package benchmark;
+package SkipList.benchmark;
 
-import SkipList.SkipList;
+import SkipList.Impl.SkipList;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.Options;
@@ -18,26 +20,13 @@ public class CollectionsBenchmark {
 
     @State(Scope.Thread)
     public static class MyState {
-        private Set<Employee> employeeSet = new HashSet<>();
-        private List<Employee> employeeList = new ArrayList<>();
+        private final SkipList<Integer, Employee> sl = new SkipList<>();
+        private final Map<Integer, Employee> m = new ConcurrentSkipListMap<>();
 
-        private SkipList<Integer, Employee> sl = new SkipList<Integer, Employee>();
-        private Map<Integer, Employee> m = new ConcurrentSkipListMap<>();
-
-        private long iterations = 1000000;
-
-        private Employee employee = new Employee(100L, "Harry");
+        private final long iterations = 1000;
 
         @Setup(Level.Trial)
         public void setUp() {
-//            for (long i = 0; i < iterations; i++) {
-//                employeeSet.add(new Employee(i, "John"));
-//                employeeList.add(new Employee(i, "John"));
-//            }
-//
-//            employeeList.add(employee);
-//            employeeSet.add(employee);
-
             for (long i = 0; i < iterations; i++) {
                 sl.insert((int) i, new Employee(i, "Test"));
                 m.put((int) i, new Employee(i, "Test"));
@@ -55,16 +44,6 @@ public class CollectionsBenchmark {
         return state.m.get(178887);
     }
 
-//    @Benchmark
-//    public boolean testArrayList(MyState state) {
-//        return state.employeeList.contains(state.employee);
-//    }
-//
-//    @Benchmark
-//    public boolean testHashSet(MyState state) {
-//        return state.employeeSet.contains(state.employee);
-//    }
-
     public static void main(String[] args) throws Exception {
         Options options = new OptionsBuilder()
                 .include(CollectionsBenchmark.class.getSimpleName())
@@ -73,11 +52,11 @@ public class CollectionsBenchmark {
     }
 
     @AllArgsConstructor
+    @Getter
+    @Setter
     public static class Employee {
         private Long id;
         private String name;
-
-        // constructor and getter setters go here
     }
 }
 

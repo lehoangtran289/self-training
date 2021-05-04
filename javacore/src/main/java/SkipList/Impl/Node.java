@@ -1,10 +1,10 @@
-package SkipList;
+package SkipList.Impl;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Arrays;
 
-import static SkipList.SkipList.MAX_LEVEL;
+import static SkipList.Impl.SkipList.MAX_LEVEL;
 
 @Getter
 @Setter

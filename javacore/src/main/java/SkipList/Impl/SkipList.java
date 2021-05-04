@@ -1,4 +1,4 @@
-package SkipList;
+package SkipList.Impl;
 
 @SuppressWarnings("unchecked")
 public class SkipList<K extends Comparable<K>, V> {

@@ -1,4 +1,4 @@
-package ConcurrentSkipList;
+package SkipList.ConcurrentSkipList;
 
 import java.time.ZonedDateTime;
 
