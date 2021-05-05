@@ -2,7 +2,6 @@ package StreamAPI;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Arrays;
@@ -10,10 +9,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Test {
+public class TerminalOperationTest {
     @AllArgsConstructor
     @NoArgsConstructor
     @Data
@@ -126,19 +124,11 @@ public class Test {
         System.out.println(sEmpty.findAny().isPresent()); //false
     }
 
-    public static void streamTest() {
-        Stream<String> s = Stream.of("monkey", "gorilla", "bonobo");
-        Stream<String> c1 = s.map(str -> "x");
-        Stream<String> c2 = s.filter(str -> str.contains("a"));
-        System.out.println(c2.collect(Collectors.toList()));
-    }
-
     public static void main(String[] args) {
 //        streamMaxMinTest();
 //        streamFindTest();
 //        streamIterateTest();
 //        streamMatchTest();
 //        streamReduceTest();
-        streamTest();
     }
 }

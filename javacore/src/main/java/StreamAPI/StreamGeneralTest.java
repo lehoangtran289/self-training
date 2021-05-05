@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class PlayGround {
+public class StreamGeneralTest {
     public static void isStreamLazyTest() {
         System.out.println("\nisStreamLazyTest");
 
@@ -66,10 +66,19 @@ public class PlayGround {
         });
     }
 
+    public static void streamTest() {
+        Stream<String> s = Stream.of("monkey", "gorilla", "bonobo");
+        Stream<String> c1 = s.map(str -> "x");
+        Stream<String> c2 = s.filter(str -> str.contains("a"));
+        System.out.println(c2.collect(Collectors.toList()));
+    }
+
     public static void main(String[] args) {
 //        isStreamLazyTest();
 //        onceOffStreamTest();
 //        onceOffStreamTest2();
-        infiniteStreamCreation();
+//        infiniteStreamCreation();
+
+        streamTest();
     }
 }
