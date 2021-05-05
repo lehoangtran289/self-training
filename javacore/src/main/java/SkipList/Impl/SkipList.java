@@ -42,10 +42,10 @@ public class SkipList<K extends Comparable<K>, V> {
         }
         ptr = ptr.forward[0];
         if (ptr != null && searchKey.compareTo(ptr.key()) == 0) {
-//            System.out.println("search path = " + cnt);
+            System.out.println("search path = " + cnt);
             return ptr.value();
         } else {
-//            System.out.println("Key not found");
+            System.out.println("Key not found");
             return null;
         }
     }

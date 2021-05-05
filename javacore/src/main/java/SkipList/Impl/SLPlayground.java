@@ -5,58 +5,34 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 public class SLPlayground {
-    public static void main(String[] args) {
-        int iterations = (int) Math.pow(10, 6);
-        int fail = 0;
+    private static final int iterations = 200; // (int) Math.pow(10, 6);
+
+    public static void implSkipListTest() {
         long start = System.currentTimeMillis();
-        for (int i = 0; i < 1; i++) {
-            try {
-                SkipList<Integer, String> sl = new SkipList<>();
-                for (int j = 0; j < iterations; j++) {
-                    sl.insert(j, "Test" + j);
-                }
-                sl.delete(5);
-                sl.delete(4);
-//                sl.printSkipList();
-//                System.out.println("search for key=" + 178232 + " -> " + sl.search(178232));
-            } catch (Exception e) {
-                e.printStackTrace();
-                fail++;
-            }
+        SkipList<Integer, String> sl = new SkipList<>();
+        for (int j = 0; j < iterations; j++) {
+            sl.insert(j, "Test" + j);
         }
-        System.out.println(System.currentTimeMillis() - start);
+        sl.delete(5);
+        sl.delete(4);
+        sl.printSkipList();
+        System.out.println("search for key=" + 178 + " -> " + sl.search(178));
+//        System.out.println(System.currentTimeMillis() - start);
+    }
 
-        start = System.currentTimeMillis();
-        for (int i = 0; i < 1; i++) {
-            try {
-                 Map<Integer, String> map = new ConcurrentSkipListMap<>();
-                for (int j = 0; j < iterations; j++) {
-                    map.put(j, "Test" + j);
-                }
-                map.remove(5);
-                map.remove(4);
-            } catch (Exception e) {
-                e.printStackTrace();
-                fail++;
-            }
+    public static void concurrentSkipListTest() {
+        long start = System.currentTimeMillis();
+        Map<Integer, String> map = new ConcurrentSkipListMap<>();
+        for (int j = 0; j < iterations; j++) {
+            map.put(j, "Test" + j);
         }
-        System.out.println(System.currentTimeMillis() - start);
+        map.remove(5);
+        map.remove(4);
+//        System.out.println(System.currentTimeMillis() - start);
+    }
 
-        start = System.currentTimeMillis();
-        for (int i = 0; i < 1; i++) {
-            try {
-                 Map<Integer, String> map = new TreeMap<>();
-                for (int j = 0; j < iterations; j++) {
-                    map.put(j, "Test" + j);
-                }
-                map.remove(5);
-                map.remove(4);
-            } catch (Exception e) {
-                e.printStackTrace();
-                fail++;
-            }
-        }
-        System.out.println(System.currentTimeMillis() - start);
-
+    public static void main(String[] args) {
+        implSkipListTest();
+        concurrentSkipListTest();
     }
 }
