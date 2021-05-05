@@ -2,7 +2,7 @@ package StreamAPI;
 
 import java.util.stream.Stream;
 
-public class IntermediateOperationTest {
+public class IntermediateOperationExamples {
 
     public static void streamPeekTest() {
         Stream<Integer> infinitee = Stream.iterate(1, x -> x + 1);

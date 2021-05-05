@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class StreamGeneralTest {
+public class StreamGeneralExamples {
     public static void isStreamLazyTest() {
         System.out.println("\nisStreamLazyTest");
 
@@ -71,6 +71,24 @@ public class StreamGeneralTest {
         Stream<String> c1 = s.map(str -> "x");
         Stream<String> c2 = s.filter(str -> str.contains("a"));
         System.out.println(c2.collect(Collectors.toList()));
+    }
+
+    private static int divide(int value, int factor) {
+        int result = 0;
+        try {
+            result = value / factor;
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic Exception: Division by Zero");
+        }
+        return result;
+    }
+
+    public static int divideListElements(List<Integer> values, int divider) {
+        return values.stream().reduce(0, (a, b) -> divide(a, divider) + divide(b, divider));
+    }
+
+    public static void handleExceptionTest() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
     }
 
     public static void main(String[] args) {

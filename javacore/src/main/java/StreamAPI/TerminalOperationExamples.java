@@ -12,7 +12,7 @@ import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class TerminalOperationTest {
+public class TerminalOperationExamples {
     @AllArgsConstructor
     @NoArgsConstructor
     @Data
