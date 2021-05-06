@@ -1,11 +1,27 @@
 package StreamAPI;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamGeneralExamples {
+    @AllArgsConstructor
+    @Data
+    private static class Employee implements Comparable{
+        private String name;
+        private int salary;
+
+        @Override
+        public int compareTo(Object o) {
+            return Integer.compare(this.salary, ((Employee) o).getSalary());
+        }
+    }
+
     public static void isStreamLazyTest() {
         System.out.println("\nisStreamLazyTest");
 
@@ -91,12 +107,44 @@ public class StreamGeneralExamples {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
     }
 
+    public static void streamInternal() {
+        final Set<String> set = Set.of("a", "b", "c", "d");
+        final List<String> list = set.stream()
+                .filter(s -> s.length() > 0)
+                .distinct()
+                .collect(Collectors.toList());
+
+        System.out.println(Integer.toHexString(list.spliterator().characteristics()));
+        System.out.println(Integer.toHexString(set.spliterator().characteristics()));
+    }
+
+    public static void streamInternal2() {
+        List<Employee> employees = Arrays.asList(
+                new Employee("John Smith", 20_000),
+                new Employee("Susan Johnson", 42_000),
+                new Employee("Erik Taylor", 55_000),
+                new Employee("Zack Anderson", 14_000),
+                new Employee("Sarah Lewis", 130_000)
+        );
+        final List<Employee> updatedSalaryEmployees = employees.stream()
+                .filter(e -> {
+                    System.out.println("Filter " + e.getName());
+                    return e.getSalary() < 80_000;
+                })
+                .sorted()
+                .map(e -> {
+                    System.out.println("Map " + e.getName());
+                    return new Employee(e.getName(), (int) (e.getSalary() * 1.05));
+                })
+                .collect(Collectors.toList());
+    }
+
     public static void main(String[] args) {
 //        isStreamLazyTest();
-//        onceOffStreamTest();
+        onceOffStreamTest();
 //        onceOffStreamTest2();
 //        infiniteStreamCreation();
-
-        streamTest();
+//        streamTest();
+//        streamInternal2();
     }
 }
