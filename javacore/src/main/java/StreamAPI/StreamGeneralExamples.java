@@ -12,13 +12,13 @@ import java.util.stream.Stream;
 public class StreamGeneralExamples {
     @AllArgsConstructor
     @Data
-    private static class Employee implements Comparable{
+    private static class Employee implements Comparable<Employee>{
         private String name;
         private int salary;
 
         @Override
-        public int compareTo(Object o) {
-            return Integer.compare(this.salary, ((Employee) o).getSalary());
+        public int compareTo(Employee o) {
+            return Integer.compare(this.salary, o.getSalary());
         }
     }
 
