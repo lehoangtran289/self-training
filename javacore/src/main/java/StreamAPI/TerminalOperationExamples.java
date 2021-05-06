@@ -99,7 +99,10 @@ public class TerminalOperationExamples {
         // 3rd signature
         System.out.println("-----<U> U reduce(U identity, BiFunction<U,? super T,U> accumulator " +
                 "BinaryOperator<U> combiner)");
-        List<User> users = Arrays.asList(new User("A", 30), new User("B", 35));
+        List<User> users = Arrays.asList(
+                new User("A", 30),
+                new User("B", 35)
+        );
 
         int totalAge = users.stream()
                 .reduce(0,  // need a way to convert user to int
@@ -125,6 +128,7 @@ public class TerminalOperationExamples {
     }
 
     public static void streamForEach() {
+        // infinite stream
         Stream.iterate(new int[]{0, 1}, arr -> new int[]{arr[1], arr[0] + arr[1]})
                 .mapToInt(arr -> arr[0])
                 .forEach(i -> {
@@ -148,7 +152,8 @@ public class TerminalOperationExamples {
 //        streamFindTest();
 //        streamIterateTest();
 //        streamMatchTest();
-//        streamReduceTest();
-        streamCollectTest();
+        streamReduceTest();
+//        streamForEach();
+//        streamCollectTest();
     }
 }

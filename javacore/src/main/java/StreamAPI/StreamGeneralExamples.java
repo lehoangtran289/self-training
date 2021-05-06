@@ -103,10 +103,6 @@ public class StreamGeneralExamples {
         return values.stream().reduce(0, (a, b) -> divide(a, divider) + divide(b, divider));
     }
 
-    public static void handleExceptionTest() {
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-    }
-
     public static void streamInternal() {
         final Set<String> set = Set.of("a", "b", "c", "d");
         final List<String> list = set.stream()
@@ -141,7 +137,7 @@ public class StreamGeneralExamples {
 
     public static void main(String[] args) {
 //        isStreamLazyTest();
-        onceOffStreamTest();
+//        onceOffStreamTest();
 //        onceOffStreamTest2();
 //        infiniteStreamCreation();
 //        streamTest();
