@@ -1,6 +1,7 @@
 package StreamAPI;
 
 import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
 public class StreamParallelExamples {
 
@@ -22,7 +23,6 @@ public class StreamParallelExamples {
         System.out.println("sum = " + sumParallel);
         System.out.println("Parallel stream time = " + (System.currentTimeMillis() - start));
     }
-
 
     public static void main(String[] args) {
         SeqVsParallelStreamTest();

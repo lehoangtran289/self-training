@@ -21,6 +21,11 @@ public class TerminalOperationExamples {
         private int age;
     }
 
+    public static void countInfiniteTest() {
+        Stream<Integer> str = Stream.generate(() -> 1);
+        System.out.println(str.count());
+    }
+
     public static void streamMaxMinTest() {
         Stream<String> s = Stream.of("monkey", "ape", "bonobo");
         Optional<String> min = s.min((s1, s2) -> s2.length() - s1.length());
@@ -153,11 +158,12 @@ public class TerminalOperationExamples {
     }
 
     public static void main(String[] args) {
+        countInfiniteTest();
 //        streamMaxMinTest();
 //        streamFindTest();
 //        streamIterateTest();
 //        streamMatchTest();
-        streamReduceTest();
+//        streamReduceTest();
 //        streamForEach();
 //        streamCollectTest();
     }
