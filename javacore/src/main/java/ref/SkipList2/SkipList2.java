@@ -1,6 +1,6 @@
 package ref.SkipList2;
 
-import java.util.*;
+import java.util.Random;
 
 public class SkipList2<E> {
     static private final Random value = new Random(); // Hold the Random class object

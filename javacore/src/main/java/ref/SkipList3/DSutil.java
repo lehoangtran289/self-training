@@ -1,6 +1,6 @@
 package ref.SkipList3;
 
-import java.util.*;
+import java.util.Random;
 
 /**
  * A bunch of utility functions.

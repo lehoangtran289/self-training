@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 public class StreamGeneralExamples {
     @AllArgsConstructor
     @Data
-    private static class Employee implements Comparable<Employee>{
+    private static class Employee implements Comparable<Employee> {
         private String name;
         private int salary;
 

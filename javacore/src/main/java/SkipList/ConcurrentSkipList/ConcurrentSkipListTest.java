@@ -23,7 +23,8 @@ public class ConcurrentSkipListTest {
         for (int i = 0; i < numberOfThreads; i++) {
             executorService.execute(producer);
         }
-        ConcurrentNavigableMap<ZonedDateTime, String> eventsFromLastMinute = eventWindowSort.getEventsFromLastMinute();
+        ConcurrentNavigableMap<ZonedDateTime, String> eventsFromLastMinute =
+                eventWindowSort.getEventsFromLastMinute();
 
         long eventsOlderThanOneMinute = eventsFromLastMinute
                 .entrySet()
