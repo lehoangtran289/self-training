@@ -135,6 +135,11 @@ public class TerminalOperationExamples {
                     if (i > 50) System.exit(0);
                     System.out.print(i + " ");
                 });
+
+        Stream.iterate(new long[]{0, 1}, arr -> new long[]{arr[1], arr[0] + arr[1]})
+                .limit(50)
+                .mapToLong(arr -> arr[0])
+                .forEach(System.out::println);
     }
 
     public static void streamCollectTest() {
