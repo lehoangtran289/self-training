@@ -141,6 +141,6 @@ public class StreamGeneralExamples {
 //        onceOffStreamTest2();
 //        infiniteStreamCreation();
 //        streamTest();
-//        streamInternal2();
+        streamInternal2();
     }
 }

@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -23,6 +20,7 @@ public class TerminalOperationExamples {
 
     public static void countInfiniteTest() {
         Stream<Integer> str = Stream.generate(() -> 1);
+        System.out.println("here");
         System.out.println(str.count());
     }
 
@@ -41,7 +39,11 @@ public class TerminalOperationExamples {
         Stream<String> s = Stream.of("monkey", "gorilla", "bonobo");
         Stream<String> infinite = Stream.generate(() -> "chimp");
         Stream<String> sEmpty = Stream.empty();
+
         s.findAny().ifPresent(System.out::println); // monkey
+        s.findAny().ifPresent(System.out::println);
+        s.findAny().ifPresent(System.out::println);
+        s.findAny().ifPresent(System.out::println);
         infinite.findAny().ifPresent(System.out::println); // chimp
         System.out.println(sEmpty.findAny().isPresent()); //false
     }
@@ -69,11 +71,8 @@ public class TerminalOperationExamples {
         System.out.println(list.stream().anyMatch(pred)); // true
         System.out.println(list.stream().allMatch(pred)); // false
         System.out.println(list.stream().noneMatch(pred)); // false
-        System.out.println(infinite.anyMatch(pred)); // true
-
+        System.out.println(infinite.allMatch(pred)); // true
         // infinite stream not terminated
-        infinite = Stream.generate(() -> "2chimp");
-        pred = x -> Character.isLetter(x.charAt(0));
         System.out.println(infinite.anyMatch(pred));
         System.out.println("here");
     }
@@ -158,11 +157,11 @@ public class TerminalOperationExamples {
     }
 
     public static void main(String[] args) {
-        countInfiniteTest();
+//        countInfiniteTest();
 //        streamMaxMinTest();
 //        streamFindTest();
 //        streamIterateTest();
-//        streamMatchTest();
+        streamMatchTest();
 //        streamReduceTest();
 //        streamForEach();
 //        streamCollectTest();
