@@ -6,14 +6,13 @@ import java.io.IOException;
 public class examples {
     public static void main(String[] args) throws IOException {
         try {
-            testException(-5);
-            testException(-10);
+            throw new FileNotFoundException();
+//            testException(-5);
+//            testException(-10);
         } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            System.out.println("Releasing resources");
+            System.out.println("exception");
+            throw new FileNotFoundException();
         }
-        throw new FileNotFoundException();
     }
 
     public static void testException(int i) throws FileNotFoundException, IOException {
