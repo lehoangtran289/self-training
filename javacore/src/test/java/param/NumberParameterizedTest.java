@@ -1,3 +1,5 @@
+package param;
+
 import JunitModels.NumberChecker;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -15,8 +17,8 @@ public class NumberParameterizedTest {
         assertTrue(NumberChecker.isOdd(number));
     }
 
-    @ParameterizedTest
-    @NullAndEmptySource // not work with primitive
+//    @ParameterizedTest
+//    @NullAndEmptySource // not work with primitive
     void test(int number) {
         assertTrue(NumberChecker.isOdd(number));
     }
