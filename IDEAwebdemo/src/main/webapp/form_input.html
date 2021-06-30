@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Input Form</title>
+</head>
+<body>
+<h2>User Input Form</h2>
+<form method="get" action="user">
+    <fieldset>
+        <legend>Personal Particular</legend>
+        Name: <input type="text" name="username"/><br/><br/>
+        Gender: <input type="radio" name="gender" value="m" checked/>Male
+        <input type="radio" name="gender" value="f"/>Female<br/><br/>
+        Age: <select name="age">
+        <option value="1">&lt; 1 year old</option>
+        <option value="99">1 to 99 years old</option>
+        <option value="100">&gt; 99 years old</option>
+    </select>
+    </fieldset>
+
+    <fieldset>
+        <legend>Languages</legend>
+        <input type="checkbox" name="language" value="english" checked/>English
+        <input type="checkbox" name="language" value="vnese"/>Vietnamese
+    </fieldset>
+
+    <fieldset>
+        <legend>Description</legend>
+        <textarea rows="5" cols="30" name="description">Enter your description here...</textarea>
+    </fieldset>
+
+    <input type="hidden" name="secret" value="888"/>
+    <input type="submit" value="Submit"/>
+    <input type="reset" value="Reset"/>
+</form>
+</body>
+</html>
