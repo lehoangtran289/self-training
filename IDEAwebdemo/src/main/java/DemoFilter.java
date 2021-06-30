@@ -5,10 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-//@WebServlet(name = "DemoFilter", value = "/filter")
+@WebServlet(name = "DemoFilter", value = "/filter")
 public class DemoFilter extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("DemoFilter: inside doGET");
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
 
