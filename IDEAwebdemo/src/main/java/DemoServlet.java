@@ -52,11 +52,13 @@ public class DemoServlet extends HttpServlet {
             writer.println("<body>");
 
             writer.println("<h1>This is a simple java servlet.</h1>");
+            writer.println("@WebInitParam</br>");
             initParams.forEach((k, v) -> {
                 writer.println("<p>");
                 writer.println(k + " - " + v);
                 writer.println("</p>");
             });
+            writer.println("</br>Web Context Param</br>");
             writer.println("<p>");
                 writer.println(dbDriver + " -> " + dbUrl);
                 writer.println("</p>");

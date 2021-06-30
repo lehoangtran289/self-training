@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
-@WebFilter(filterName = "filter2", urlPatterns = "/filter")
+@WebFilter(filterName = "filter2")
 public class SecondFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
