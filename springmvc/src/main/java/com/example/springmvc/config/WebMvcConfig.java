@@ -8,11 +8,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@EnableWebMvc
+@EnableWebMvc // customize the imported configuration from WebMvcConfigurerSupport
 @ComponentScan(basePackages = {"com.example.springmvc"})
-public class WebMvcConfig implements WebMvcConfigurer {
+public class WebMvcConfig implements WebMvcConfigurer { // adding to the default Spring MVC configuration through the use of @EnableWebMvc.
 
-    @Bean()
+    public WebMvcConfig() {
+        System.out.println("Construct webmvc");
+    }
+
+    @Bean
     public InternalResourceViewResolver getViewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/WEB-INF/views/");

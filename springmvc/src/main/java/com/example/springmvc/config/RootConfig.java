@@ -1,11 +1,12 @@
 package com.example.springmvc.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan("com.example.springmvc.*")
+@ComponentScan(basePackages = "com.example.springmvc.*")
 public class RootConfig {
+    public RootConfig() {
+        System.out.println("construct root config");
+    }
 }
