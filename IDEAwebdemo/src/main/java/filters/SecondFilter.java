@@ -12,7 +12,7 @@ public class SecondFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         Filter.super.init(filterConfig);
-        System.out.println("Filter2 init");
+        System.out.println("Filter 2 init");
     }
 
     @Override
@@ -26,6 +26,6 @@ public class SecondFilter implements Filter {
     @Override
     public void destroy() {
         Filter.super.destroy();
-        System.out.println("Filter2 destroy");
+        System.out.println("Filter 2 destroy");
     }
 }

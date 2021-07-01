@@ -27,6 +27,7 @@ public class DemoServlet extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
+        System.out.println("init DemoServlet");
         Enumeration<String> e = config.getInitParameterNames();
         while (e.hasMoreElements()) {
             String initParamName = e.nextElement();
@@ -38,8 +39,14 @@ public class DemoServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-            IOException {
+    public void destroy() {
+        super.destroy();
+        System.out.println("destroy DemoServlet");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("Handle GET in DemoServlet");
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
 

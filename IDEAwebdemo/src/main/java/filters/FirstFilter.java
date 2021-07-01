@@ -11,7 +11,7 @@ public class FirstFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         Filter.super.init(filterConfig);
-        System.out.println("Filter1 init");
+        System.out.println("Filter 1 init");
     }
 
     @Override
