@@ -34,6 +34,8 @@ public class LoginFilter implements Filter {
 
         if (accounts.containsKey(username) && StringUtils.equals(accounts.get(username), password)) {
             chain.doFilter(request, response);
+            System.out.println();
+            System.out.println("after LOGINFILTER response");
         } else {
             ((HttpServletRequest)request).getSession().setAttribute("error", "Login fail");
             HttpServletResponse httpResponse = (HttpServletResponse) response;

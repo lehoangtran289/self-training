@@ -12,6 +12,8 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
+// LIFECYCLE
+// SERVLET INITPARAM
 @WebServlet(
         name = "DemoServlet",
         value = "/demo-servlet",
@@ -25,6 +27,10 @@ public class DemoServlet extends HttpServlet {
     private String dbDriver;
     private String dbUrl;
 
+    public DemoServlet() {
+        System.out.println("DemoServlet Construction");
+    }
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         System.out.println("init DemoServlet");
@@ -34,7 +40,7 @@ public class DemoServlet extends HttpServlet {
             String initParamValue = config.getInitParameter(initParamName);
             this.initParams.put(initParamName, initParamValue);
         }
-        this.dbDriver = config.getServletContext().getInitParameter("jdbcDriver");
+        this.dbDriver = config.getServletContext().getInitParameter("jdbcDriver");  // CONTEXT PARAM
         this.dbUrl = config.getServletContext().getInitParameter("databaseUrl");
     }
 

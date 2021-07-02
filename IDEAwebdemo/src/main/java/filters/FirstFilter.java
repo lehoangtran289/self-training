@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Date;
 
-@WebFilter(filterName = "filter1")
+@WebFilter(filterName = "filter1", urlPatterns = "/filter")
 public class FirstFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
