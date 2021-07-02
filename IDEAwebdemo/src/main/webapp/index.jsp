@@ -4,6 +4,13 @@
     <title>Hello, I am a Java web app!</title>
 </head>
 <body>
+<%
+    String error = (String) request.getSession().getAttribute("error");
+    if (error != null) {
+        response.getWriter().println("<h2>Login fail</h2>");
+        request.getSession().invalidate();
+    }
+%>
 <h1>Simple Java Web App Demo</h1>
 <p>Java demo servlet <a href="demo-servlet">here</a></p>
 <p>HelloServet With Annotation: <a href="hello-anou">click here</a></p>

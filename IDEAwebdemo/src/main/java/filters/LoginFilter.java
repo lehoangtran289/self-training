@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,6 +35,7 @@ public class LoginFilter implements Filter {
         if (accounts.containsKey(username) && StringUtils.equals(accounts.get(username), password)) {
             chain.doFilter(request, response);
         } else {
+            ((HttpServletRequest)request).getSession().setAttribute("error", "Login fail");
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             httpResponse.sendRedirect(request.getServletContext().getContextPath() + "/");
         }
