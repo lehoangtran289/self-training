@@ -15,7 +15,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @RequestMapping(value = "/home", method = RequestMethod.POST)
     public String userForm(Locale locale, Model model) {
         model.addAttribute("users", userService.list());

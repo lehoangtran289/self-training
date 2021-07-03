@@ -11,7 +11,6 @@
 //import javax.servlet.ServletException;
 //import javax.servlet.ServletRegistration;
 //
-//@Deprecated
 //public class SpringWebAppInitializer implements WebApplicationInitializer {
 //
 //    @Override

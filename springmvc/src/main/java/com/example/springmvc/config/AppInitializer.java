@@ -4,8 +4,18 @@ import com.example.springmvc.filter.LoginFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.*;
+import java.util.EnumSet;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+
+        EnumSet<DispatcherType> dispatcherTypes = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.ERROR);
+
+        FilterRegistration.Dynamic loginFilter = servletContext.addFilter("loginFilter", LoginFilter.class);
+        loginFilter.addMappingForUrlPatterns(dispatcherTypes, false, "/home");
+    }
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
@@ -25,8 +35,8 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
         return new String[]{"/"};
     }
 
-    @Override
-    protected Filter[] getServletFilters() {
-        return new Filter[]{new LoginFilter()};
-    }
+//    @Override
+//    protected Filter[] getServletFilters() {
+//        return new Filter[]{new LoginFilter()};
+//    }
 }

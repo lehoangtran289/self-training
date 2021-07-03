@@ -30,7 +30,10 @@ public class LoginFilter implements Filter {
         if (userService.list().contains(new User(username, password))) {
             chain.doFilter(request, response);
         } else {
-            response.sendRedirect(request.getServletContext().getContextPath() + "/");
+//            response.sendRedirect(request.getServletContext().getContextPath() + "/");
+            request.setAttribute("error", "Username password incorrect");
+            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(request.getServletContext().getContextPath() + "/");
+            dispatcher.forward(request, response);
         }
     }
 

@@ -1,5 +1,6 @@
 <html>
 <body>
+<p>${error}</p>
 <h2>User Input Form</h2>
 <form method="post" action="home">
     <fieldset>
