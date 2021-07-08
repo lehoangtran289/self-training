@@ -16,7 +16,7 @@ public class FetchTypeDemo {
 
     public static void main(String[] args) {
         System.out.println("=====INIT DATA=====");
-        studentService.initData("students");
+        studentService.initData("normal");
 
         System.out.println("=====FETCH DATA=====");
         fetchData();
@@ -30,9 +30,9 @@ public class FetchTypeDemo {
             Set<Student> students = school.getStudents();
             System.out.println(students);
 
-//            students.stream().map(Student::getStudentDetail).forEach(System.out::println);
-//            students.stream().map(Student::getBooks).forEach(System.out::println);
-//            students.stream().map(Student::getSchool).forEach(System.out::println);
+            students.stream().map(Student::getStudentDetail).forEach(System.out::println);
+            students.stream().map(Student::getBooks).forEach(System.out::println);
+            students.stream().map(Student::getSchool).forEach(System.out::println);
         });
     }
 

@@ -29,9 +29,16 @@ public class School {
 
     @OneToMany(
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE,
+                    CascadeType.REMOVE,
+                    CascadeType.DETACH,
+                    CascadeType.REFRESH
+            },
             mappedBy = "school"
     )
+    @Cascade(org.hibernate.annotations.CascadeType.LOCK)
     @ToString.Exclude
     private Set<Student> students = new HashSet<>();
 
