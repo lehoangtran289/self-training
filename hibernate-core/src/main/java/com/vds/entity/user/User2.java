@@ -1,4 +1,4 @@
-package entity;
+package com.vds.entity.user;
 
 import lombok.*;
 
@@ -6,8 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user2")
-@Getter
-@ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class User2 {
@@ -25,17 +24,5 @@ public class User2 {
     public User2(String name, int age) {
         this.name = name;
         this.age = age;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    private void setId(int id) {
-        this.id = id;
     }
 }

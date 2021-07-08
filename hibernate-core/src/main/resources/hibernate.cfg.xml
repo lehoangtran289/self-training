@@ -17,6 +17,7 @@
 
         <!-- Echo the SQL to stdout -->
         <property name="show_sql">true</property>
+        <property name="hibernate.show_sql">true</property>
 
         <!-- Set the current session context -->
         <property name="current_session_context_class">thread</property>
@@ -32,8 +33,12 @@
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
 
         <!--Mapping-->
-        <mapping class="entity.User"/>
-        <mapping class="entity.User2"/>
+        <mapping class="com.vds.entity.user.User"/>
+        <mapping class="com.vds.entity.user.User2"/>
+        <mapping class="com.vds.entity.school.Student"/>
+        <mapping class="com.vds.entity.school.StudentDetail"/>
+        <mapping class="com.vds.entity.school.School"/>
+        <mapping class="com.vds.entity.school.Book"/>
 
     </session-factory>
 </hibernate-configuration>

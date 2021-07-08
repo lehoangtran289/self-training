@@ -1,19 +1,26 @@
-import entity.User;
-import entity.User2;
-import org.hibernate.Session;
-import util.HibernateUtil;
+package com.vds.demo;
 
-public class EntityStatesExample {
+import com.vds.entity.user.User;
+import com.vds.entity.user.User2;
+import com.vds.service.UserService;
+import com.vds.service.impl.UserServiceImpl;
+import org.hibernate.Session;
+import com.vds.util.HibernateUtil;
+
+public class EntityStatesEx {
+    private static final UserService userService = UserServiceImpl.getInstance();
 
     public static void main(String[] args) {
-//        persistenceExample();
-        removedExample();
-//        detachedExample();
-
+        switch (4) {
+            case 1: persistenceStateExample(); break;
+            case 2: removedStateExample(); break;
+            case 3: detachedStateExample(); break;
+            case 4: updateByIdExample(1); break;
+        }
         HibernateUtil.shutdown();
     }
 
-    public static void detachedExample() {
+    public static void detachedStateExample() {
         // transient state
         User user1 = new User("User 1", 20);
         User user2 = new User("User 2", 21);
@@ -25,13 +32,13 @@ public class EntityStatesExample {
             session.save(user1);
             session.save(user2);
 
-//            session.getTransaction().commit();
+            // no commit found
             session.close();
         }
-        getUserList();
+        System.out.println(userService.getAllUsers());
     }
 
-    public static void removedExample() {
+    public static void removedStateExample() {
         // transient state
         User user1 = new User("User 1", 21);
         User user2 = new User("User 2", 22);
@@ -54,10 +61,11 @@ public class EntityStatesExample {
             session.getTransaction().commit();
             session.close();
         }
-        getUserList();
+        System.out.println(userService.getAllUsers());
+        System.out.println(userService.getAllUsers2());
     }
 
-    public static void persistenceExample() {
+    public static void persistenceStateExample() {
         // transient state
         User user1 = new User("User 1", 18);
         User user2 = new User("User 2", 19);
@@ -73,29 +81,19 @@ public class EntityStatesExample {
             session.getTransaction().commit();
             session.close();
         }
-        getUserList();
+        System.out.println(userService.getAllUsers());
     }
 
-    public static void updateByIdExample() {
-        // Third unit
+    public static void updateByIdExample(int id) {
+        userService.initData("user");
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            User user = session.get(User.class, 1);
+            User user = session.get(User.class, id);
             System.out.println("Before -> " + user);
 
             user.setAge(100);
             session.getTransaction().commit();
-            System.out.println("After -> " + session.get(User.class, 1));
-            session.close();
-        }
-    }
-
-    public static void getUserList() {
-        System.out.println("User List:");
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            System.out.println(session.createQuery("from User ", User.class).list());
-            System.out.println(session.createQuery("from User2 ", User2.class).list());
+            System.out.println("After -> " + session.get(User.class, id));
             session.close();
         }
     }
