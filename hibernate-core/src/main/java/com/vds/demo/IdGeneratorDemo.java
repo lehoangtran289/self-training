@@ -4,7 +4,7 @@ import com.vds.service.UserService;
 import com.vds.service.impl.UserServiceImpl;
 import com.vds.util.HibernateUtil;
 
-public class IdGeneratorEx {
+public class IdGeneratorDemo {
     private static final UserService userService = UserServiceImpl.getInstance();
 
     public static void main(String[] args) {

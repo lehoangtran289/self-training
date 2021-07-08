@@ -9,7 +9,9 @@ import org.hibernate.Session;
 
 import java.util.Set;
 
-public class FetchTypeEx {
+import static com.vds.util.HibernateUtil.doInJpa;
+
+public class FetchTypeDemo {
     private static final StudentService studentService = StudentServiceImpl.getInstance();
 
     public static void main(String[] args) {
@@ -21,8 +23,7 @@ public class FetchTypeEx {
     }
 
     public static void fetchData() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
+        doInJpa(session -> {
             School school = session.createQuery("from School ", School.class).list().get(0);
             System.out.println(school);
 
@@ -32,9 +33,7 @@ public class FetchTypeEx {
 //            students.stream().map(Student::getStudentDetail).forEach(System.out::println);
 //            students.stream().map(Student::getBooks).forEach(System.out::println);
 //            students.stream().map(Student::getSchool).forEach(System.out::println);
-
-            session.close();
-        }
+        });
     }
 
     public static void lazyInitExceptionExample() {

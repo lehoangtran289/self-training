@@ -1,10 +1,14 @@
 package com.vds.util;
 
+import com.vds.entity.school.School;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import java.util.function.Consumer;
 
 public class HibernateUtil {
     private static StandardServiceRegistry registry;
@@ -31,6 +35,14 @@ public class HibernateUtil {
             }
         }
         return sessionFactory;
+    }
+
+    public static void doInJpa(Consumer<Session> consumer) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            consumer.accept(session);
+            session.close();
+        }
     }
 
     public static void shutdown() {

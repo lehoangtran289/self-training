@@ -9,6 +9,8 @@ import org.hibernate.Session;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.vds.util.HibernateUtil.doInJpa;
+
 public class UserServiceImpl implements UserService {
     private UserServiceImpl() {
     }
