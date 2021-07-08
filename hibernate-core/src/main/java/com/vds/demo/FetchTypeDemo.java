@@ -9,7 +9,7 @@ import org.hibernate.Session;
 
 import java.util.Set;
 
-import static com.vds.util.HibernateUtil.doInJpa;
+import static com.vds.util.HibernateUtil.doInTransaction;
 
 public class FetchTypeDemo {
     private static final StudentService studentService = StudentServiceImpl.getInstance();
@@ -23,7 +23,7 @@ public class FetchTypeDemo {
     }
 
     public static void fetchData() {
-        doInJpa(session -> {
+        doInTransaction(session -> {
             School school = session.createQuery("from School ", School.class).list().get(0);
             System.out.println(school);
 

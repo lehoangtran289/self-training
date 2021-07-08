@@ -4,16 +4,15 @@ import com.vds.entity.user.User;
 import com.vds.entity.user.User2;
 import com.vds.service.UserService;
 import com.vds.service.impl.UserServiceImpl;
-import org.hibernate.Session;
 import com.vds.util.HibernateUtil;
 
-import static com.vds.util.HibernateUtil.doInJpa;
+import static com.vds.util.HibernateUtil.doInTransaction;
 
 public class EntityStatesDemo {
     private static final UserService userService = UserServiceImpl.getInstance();
 
     public static void main(String[] args) {
-        switch (2) {
+        switch (4) {
             case 1: persistenceStateExample(); break;
             case 2: removedStateExample(); break;
             case 3: detachedStateExample(); break;
@@ -27,7 +26,7 @@ public class EntityStatesDemo {
         User user1 = new User("User 1", 20);
         User user2 = new User("User 2", 21);
 
-        doInJpa(session -> {
+        doInTransaction(session -> {
             // persistence state
             session.save(user1);
             session.save(user2);
@@ -44,7 +43,7 @@ public class EntityStatesDemo {
         User user3 = new User("User 3", 23);
         User2 user4 = new User2("User 4", 24);
 
-        doInJpa(session -> {
+        doInTransaction(session -> {
             // persistence state
             session.save(user1);
             session.save(user2);
@@ -67,7 +66,7 @@ public class EntityStatesDemo {
         User user2 = new User("User 2", 19);
         User user3 = new User("User 3", 28);
 
-        doInJpa(session -> {
+        doInTransaction(session -> {
             // persistence state
             session.save(user1);
             session.save(user2);
@@ -80,12 +79,21 @@ public class EntityStatesDemo {
     public static void updateByIdExample(int id) {
         userService.initData("user");
 
-        doInJpa(session -> {
+        doInTransaction(session -> {
             User user = session.get(User.class, id);
             System.out.println("Before -> " + user);
-
             user.setAge(100);
-            session.getTransaction().commit();
+
+            session.flush();
+            user.setAge(102);
+//            session.refresh(user);
+
+            System.out.println(user.getAge());
+
+//            session.getTransaction().commit();
+        });
+
+        doInTransaction(session -> {
             System.out.println("After -> " + session.get(User.class, id));
         });
     }

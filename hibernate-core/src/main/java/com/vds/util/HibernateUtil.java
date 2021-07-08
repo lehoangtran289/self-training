@@ -37,7 +37,7 @@ public class HibernateUtil {
         return sessionFactory;
     }
 
-    public static void doInJpa(Consumer<Session> consumer) {
+    public static void doInTransaction(Consumer<Session> consumer) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             consumer.accept(session);
