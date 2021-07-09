@@ -42,7 +42,7 @@ public class School implements Serializable {
             },
             mappedBy = "school"
     )
-    @Cascade(org.hibernate.annotations.CascadeType.LOCK)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @ToString.Exclude
     private Set<Student> students = new HashSet<>();
 

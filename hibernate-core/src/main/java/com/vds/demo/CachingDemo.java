@@ -5,9 +5,12 @@ import com.vds.service.StudentService;
 import com.vds.service.impl.StudentServiceImpl;
 import com.vds.util.HibernateUtil;
 import lombok.SneakyThrows;
+import org.hibernate.Metamodel;
 import org.hibernate.Session;
+import org.hibernate.metadata.ClassMetadata;
 import org.hibernate.stat.Statistics;
 
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static com.vds.util.HibernateUtil.doInTransaction;
@@ -64,7 +67,9 @@ public class CachingDemo {
     @SneakyThrows
     private static void secondLevelCaching() {
         studentService.initData("normal");
-        HibernateUtil.getSessionFactory().getCache().evictAll();
+//        HibernateUtil.getSessionFactory().getCache().evictAll();
+
+        TimeUnit.SECONDS.sleep(2);
 
         Statistics stats = HibernateUtil.getSessionFactory().getStatistics();
         stats.setStatisticsEnabled(true);
