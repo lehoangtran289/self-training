@@ -4,8 +4,11 @@ import com.vds.entity.school.School;
 import com.vds.service.StudentService;
 import com.vds.service.impl.StudentServiceImpl;
 import com.vds.util.HibernateUtil;
+import lombok.SneakyThrows;
 import org.hibernate.Session;
 import org.hibernate.stat.Statistics;
+
+import java.util.concurrent.TimeUnit;
 
 import static com.vds.util.HibernateUtil.doInTransaction;
 import static com.vds.util.HibernateUtil.getSessionFactory;
@@ -58,6 +61,7 @@ public class CachingDemo {
         session2.close();
     }
 
+    @SneakyThrows
     private static void secondLevelCaching() {
         studentService.initData("normal");
         HibernateUtil.getSessionFactory().getCache().evictAll();
@@ -75,6 +79,8 @@ public class CachingDemo {
         School school = session1.get(School.class, 1);
         System.out.println("school: " + school.getSchoolName());
         printStats(stats);
+
+//        TimeUnit.SECONDS.sleep(3);
 
         System.out.println("--- 2 L1 cache---");
         School school2 = session1.get(School.class, 1);
