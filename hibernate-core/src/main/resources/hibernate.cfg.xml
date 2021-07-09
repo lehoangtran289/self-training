@@ -32,6 +32,10 @@
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
 
+        <!--Enable second level cache-->
+        <property name="cache.use_second_level_cache">true</property>
+        <property name="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+
         <!--Mapping-->
         <mapping class="com.vds.entity.user.User"/>
         <mapping class="com.vds.entity.user.User2"/>
