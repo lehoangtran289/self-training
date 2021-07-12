@@ -16,7 +16,7 @@ public class CascadeTypeDemo {
 
     // Note: set Id Generated strategy to != IDENTITY to observe these following demo(s) clearly
     public static void main(String[] args) {
-        switch (7) {
+        switch (2) {
             case 1: typePersist(); break;
             case 2: typeMerge(); break;
             case 3: typeRemove(); break;
@@ -57,6 +57,8 @@ public class CascadeTypeDemo {
             school1.getStudents().forEach(s -> s.setFullName(s.getFullName() + "-modified"));
             session.merge(school1);
             session.flush();
+
+            System.out.println(session.get(School.class, schoolId));
         });
     }
 
