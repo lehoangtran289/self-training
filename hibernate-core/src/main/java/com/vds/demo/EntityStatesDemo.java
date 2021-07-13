@@ -6,13 +6,15 @@ import com.vds.service.UserService;
 import com.vds.service.impl.UserServiceImpl;
 import com.vds.util.HibernateUtil;
 
+import java.util.concurrent.TimeUnit;
+
 import static com.vds.util.HibernateUtil.doInTransaction;
 
 public class EntityStatesDemo {
     private static final UserService userService = UserServiceImpl.getInstance();
 
     public static void main(String[] args) {
-        switch (4) {
+        switch (1) {
             case 1: persistenceStateExample(); break;
             case 2: removedStateExample(); break;
             case 3: detachedStateExample(); break;
@@ -61,19 +63,28 @@ public class EntityStatesDemo {
     }
 
     public static void persistenceStateExample() {
-        // transient state
-        User user1 = new User("User 1", 18);
-        User user2 = new User("User 2", 19);
-        User user3 = new User("User 3", 28);
+        Thread thread1 = new Thread(() -> {
+            // transient state
+            User user1 = new User("User 1", 18);
 
-        doInTransaction(session -> {
-            // persistence state
-            session.save(user1);
-            session.save(user2);
-            session.save(user3);
-            session.getTransaction().commit();
+            doInTransaction(session -> {
+                // persistence state
+                session.save(user1);
+//                session.getTransaction().commit();    // enable hibernate.autocommit for autocommit mode
+            });
         });
-        System.out.println(userService.getAllUsers());
+        Thread thread2 = new Thread(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            doInTransaction(session -> {
+                System.out.println(session.get(User.class, 1));
+            });
+        });
+        thread1.start();
+        thread2.start();
     }
 
     public static void updateByIdExample(int id) {
