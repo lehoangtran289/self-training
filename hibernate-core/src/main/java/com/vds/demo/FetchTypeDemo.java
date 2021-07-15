@@ -16,7 +16,7 @@ public class FetchTypeDemo {
 
     public static void main(String[] args) {
         System.out.println("=====INIT DATA=====");
-        studentService.initData("normal");
+        studentService.initData("students");
 
         System.out.println("=====FETCH DATA=====");
         fetchData();
