@@ -3,6 +3,7 @@ package com.vds.springbootx.service;
 import com.vds.springbootx.entity.JournalEntry;
 import com.vds.springbootx.repository.JournalEntryRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -12,10 +13,14 @@ import java.util.List;
 @Slf4j
 public class JournalEntryService {
     private final JournalEntryRepository journalEntryRepository;
+    private final String message;
 
-    public JournalEntryService(JournalEntryRepository journalEntryRepository) {
+    public JournalEntryService(JournalEntryRepository journalEntryRepository,
+                               @Value("${message}") String message) {
         this.journalEntryRepository = journalEntryRepository;
+        this.message = message;
         initData();
+        System.out.println(message);
     }
 
     private void initData() {
