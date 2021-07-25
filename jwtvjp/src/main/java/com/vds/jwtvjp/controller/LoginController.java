@@ -43,9 +43,4 @@ public class LoginController {
             return ResponseEntity.ok(new ApiResponse<>(false, "Authenticate fail"));
         }
     }
-
-    @GetMapping("/resource")
-    public ResponseEntity<?> getResource() {
-        return ResponseEntity.ok(new ApiResponse<>(true, "Pr0Vjp Resource"));
-    }
 }
