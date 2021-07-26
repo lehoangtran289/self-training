@@ -1,4 +1,4 @@
-package com.vds.jwtvjp.models;
+package com.vds.jwtvjp.payload;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

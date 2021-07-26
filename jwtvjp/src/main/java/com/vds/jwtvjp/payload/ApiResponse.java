@@ -1,4 +1,4 @@
-package com.vds.jwtvjp.models;
+package com.vds.jwtvjp.payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

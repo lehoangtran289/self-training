@@ -1,9 +1,9 @@
 package com.vds.jwtvjp.controller;
 
 import com.vds.jwtvjp.entity.CustomUserDetails;
-import com.vds.jwtvjp.models.ApiResponse;
-import com.vds.jwtvjp.models.LoginRequest;
-import com.vds.jwtvjp.models.LoginResponse;
+import com.vds.jwtvjp.payload.ApiResponse;
+import com.vds.jwtvjp.payload.LoginRequest;
+import com.vds.jwtvjp.payload.LoginResponse;
 import com.vds.jwtvjp.util.TokenProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
