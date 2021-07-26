@@ -39,17 +39,24 @@ public class SimpleLoginController {
                 .redirectUri("http://localhost:8080/login/oauth2/google")
                 .build();
 
-        HttpEntity<OAuth2GoogleRequest> requestBody = new HttpEntity<>(tokenRequest);
-
-        ResponseEntity<OAuth2GoogleResponse> response = restTemplate.exchange(
+        ResponseEntity<OAuth2GoogleResponse> httpResponse = restTemplate.exchange(
                 "https://www.googleapis.com/oauth2/v4/token",
                 HttpMethod.POST,
-                requestBody, new ParameterizedTypeReference<OAuth2GoogleResponse>() {}
+                new HttpEntity<>(tokenRequest),
+                new ParameterizedTypeReference<OAuth2GoogleResponse>() {}
         );
-        OAuth2GoogleResponse loginGoogleResponseDto = response.getBody();
-        assert loginGoogleResponseDto != null;
-        loginGoogleResponseDto.getUrl().put("Lấy thông tin user", "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + loginGoogleResponseDto.getAccessToken());
-        return ResponseFactory.success(loginGoogleResponseDto);
+
+        // Get oauth2 response
+        OAuth2GoogleResponse oAuth2GoogleResponse = httpResponse.getBody();
+        if (oAuth2GoogleResponse == null || oAuth2GoogleResponse.getUrl() == null) {
+            return ResponseFactory.fail(oAuth2GoogleResponse);
+        }
+        oAuth2GoogleResponse.getUrl().put(
+                "Lấy thông tin user",
+                "https://www.googleapis.com/oauth2/v1/userinfo?access_token="
+                        + oAuth2GoogleResponse.getAccessToken()
+        );
+        return ResponseFactory.success(oAuth2GoogleResponse);
     }
 
     @GetMapping("/info")

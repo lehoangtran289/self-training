@@ -19,5 +19,5 @@ public class OAuth2GoogleResponse {
     private String refreshToken;
 
     @JsonIgnore
-    private Map<String, String> url=new HashMap<>();
+    private Map<String, String> url = new HashMap<>();
 }
