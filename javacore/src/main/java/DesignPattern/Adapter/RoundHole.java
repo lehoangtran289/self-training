@@ -3,6 +3,9 @@ package DesignPattern.Adapter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * Client
+ */
 @Data
 @AllArgsConstructor
 public class RoundHole {

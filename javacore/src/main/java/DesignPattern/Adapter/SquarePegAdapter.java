@@ -1,5 +1,8 @@
 package DesignPattern.Adapter;
 
+/**
+ * Adapter
+ */
 public class SquarePegAdapter implements Peg {
     private final SquarePeg squarePeg;
 

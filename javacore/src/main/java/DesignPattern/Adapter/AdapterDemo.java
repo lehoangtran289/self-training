@@ -1,6 +1,10 @@
 package DesignPattern.Adapter;
 
+/**
+ * Reference: https://refactoring.guru/design-patterns/adapter
+ */
 public class AdapterDemo {
+
     public static void main(String[] args) {
         RoundHole hole = new RoundHole(5);
         RoundPeg roundPeg = new RoundPeg(5);
@@ -12,7 +16,7 @@ public class AdapterDemo {
 //         hole.fits(smallSquare); // ERROR -> Not compatible -> need adapter
         SquarePegAdapter smallSquareAdapter = new SquarePegAdapter(smallSquare);
         SquarePegAdapter largeSquareAdapter = new SquarePegAdapter(largeSquare);
-        System.out.println(hole.fits(smallSquareAdapter));
-        System.out.println(hole.fits(largeSquareAdapter));
+        System.out.println(hole.fits(smallSquareAdapter));  // true
+        System.out.println(hole.fits(largeSquareAdapter));  // false
     }
 }
