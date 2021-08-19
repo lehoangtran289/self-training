@@ -4,6 +4,7 @@ import com.vds.springbootx.entity.JournalEntry;
 import com.vds.springbootx.service.JournalEntryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class JournalController {
     }
 
     @GetMapping("/journal")
+    @Transactional
     public ResponseEntity<List<JournalEntry>> getAll() {
         return ResponseEntity.ok(journalEntryService.getAllJournals());
     }
