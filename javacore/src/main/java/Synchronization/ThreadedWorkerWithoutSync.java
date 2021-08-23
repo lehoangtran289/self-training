@@ -1,4 +1,4 @@
-package DSLab4Synchronization;
+package Synchronization;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
