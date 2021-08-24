@@ -2,6 +2,10 @@ package com.vds.springbootx.controller;
 
 import com.vds.springbootx.entity.JournalEntry;
 import com.vds.springbootx.service.JournalEntryService;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +26,35 @@ public class JournalController {
     @Transactional
     public ResponseEntity<List<JournalEntry>> getAll() {
         return ResponseEntity.ok(journalEntryService.getAllJournals());
+    }
+
+    @GetMapping("/test")
+    @Transactional
+    public ResponseEntity<Object> objectParamTest(
+            ParamObject obj,
+            ParamObject2 obj2
+    ) {
+        System.out.println(obj);
+        System.out.println(obj2);
+        return ResponseEntity.ok(null);
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @ToString
+    public static class ParamObject {
+        private String code;
+        private String name;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @ToString
+    public static class ParamObject2 {
+        private String code;
+        private String name2;
     }
 
     @PostMapping("/journal")
