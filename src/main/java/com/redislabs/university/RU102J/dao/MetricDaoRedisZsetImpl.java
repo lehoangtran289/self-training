@@ -51,6 +51,8 @@ public class MetricDaoRedisZsetImpl implements MetricDao {
         // START Challenge #2
         String metricKey = RedisSchema.getDayMetricKey(siteId, unit, dateTime);
         Integer minuteOfDay = getMinuteOfDay(dateTime);
+        jedis.zadd(metricKey, minuteOfDay, new MeasurementMinute(value, minuteOfDay).toString());
+        jedis.expire(metricKey, METRIC_EXPIRATION_SECONDS);
         // END Challenge #2
     }
 
@@ -70,14 +72,13 @@ public class MetricDaoRedisZsetImpl implements MetricDao {
 
         List<Measurement> measurements = new ArrayList<>();
         ZonedDateTime currentDate = time;
-        Integer count = limit;
-        Integer iterations = 0;
+        int count = limit;
+        int iterations = 0;
 
         // This loop extracts the elements of successive
         // sorted sets until it reaches the requested limit.
         do {
-            List<Measurement> ms = getMeasurementsForDate(siteId, currentDate,
-                    unit, count);
+            List<Measurement> ms = getMeasurementsForDate(siteId, currentDate, unit, count);
             measurements.addAll(0, ms);
             count -= ms.size();
             currentDate = currentDate.minusDays(1);

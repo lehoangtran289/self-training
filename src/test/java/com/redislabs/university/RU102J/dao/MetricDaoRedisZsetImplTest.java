@@ -75,8 +75,7 @@ public class MetricDaoRedisZsetImplTest extends JedisDaoTestBase {
             metricDao.insert(reading);
         }
 
-        List<Measurement> measurements = metricDao.getRecent(siteId, MetricUnit.WHGenerated,
-         startingDate, limit);
+        List<Measurement> measurements = metricDao.getRecent(siteId, MetricUnit.WHGenerated, startingDate, limit);
         assertThat(measurements.size(), is(limit));
         int i = limit;
         for (Measurement measurement : measurements) {

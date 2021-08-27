@@ -1,10 +1,7 @@
 package com.redislabs.university.RU102J.examples;
 
 import com.redislabs.university.RU102J.HostPort;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Pipeline;
@@ -80,7 +77,22 @@ public class MultiKeyTest {
         assertThat(saddResponse.get(), is(1L));
     }
 
-    @Test public void testTransactionWithErrors() {
+    @Test
+    @Ignore
+    public void compare() {
+        Pipeline p = jedis.pipelined();
+
+        Response<Long> length = p.zcard("set");
+        if (length.get() < 1000) {
+            String element = "foo" + String.valueOf(Math.random());
+            p.zadd("set", Math.random(), element);
+        }
+
+        p.sync();
+    }
+
+    @Test
+    public void testTransactionWithErrors() {
         jedis.set("a", "foo");
         jedis.set("c", "bar");
         Transaction t = jedis.multi();
