@@ -1,4 +1,4 @@
-package Algo;
+package Algo.random;
 
 import java.util.HashMap;
 import java.util.Map;
