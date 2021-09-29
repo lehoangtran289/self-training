@@ -1,4 +1,4 @@
-package Algo.OTP;
+package Algo.TOTP;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

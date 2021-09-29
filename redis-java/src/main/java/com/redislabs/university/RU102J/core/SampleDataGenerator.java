@@ -5,7 +5,6 @@ import com.redislabs.university.RU102J.dao.*;
 import com.redislabs.university.RU102J.resources.MeterReadingResource;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import sun.awt.X11.XSystemTrayPeer;
 
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
