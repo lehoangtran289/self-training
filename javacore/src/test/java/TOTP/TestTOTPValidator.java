@@ -1,8 +1,6 @@
 package TOTP;
 
-import Algo.TOTP.CommonUtils;
 import Algo.TOTP.TOTPValidator;
-import com.google.common.base.Charsets;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;

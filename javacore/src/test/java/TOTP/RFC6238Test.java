@@ -1,6 +1,5 @@
 package TOTP;
 
-import Algo.TOTP.CommonUtils;
 import Algo.TOTP.HashAlgorithm;
 import com.google.common.collect.ImmutableSet;
 import lombok.AccessLevel;
