@@ -1,5 +1,6 @@
 package Algo.TOTP;
 
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.crypto.Mac;
@@ -13,6 +14,7 @@ import java.security.NoSuchAlgorithmException;
 import static Algo.TOTP.CommonUtils.hexStrToBytes;
 import static Algo.TOTP.CommonUtils.strToHexStr;
 
+@Getter
 public class TOTPGenerator {
     private final byte[] key;
     private long timeStepSize = TOTPConfig.DEFAULT_TIME_STEP;
@@ -62,24 +64,25 @@ public class TOTPGenerator {
         return StringUtils.leftPad(Integer.toString(otp), digits, '0');
     }
 
-    private byte[] computeHMACSHA(byte[] secretKey, byte[] message) {
+    private byte[] computeHMACSHA(byte[] secretKey, byte[] movingFactor) {
         try {
             Mac hmac = Mac.getInstance(hashAlgorithm.getValue());
             SecretKeySpec macKey = new SecretKeySpec(secretKey, "RAW");
             hmac.init(macKey);
-            return hmac.doFinal(message);
+            return hmac.doFinal(movingFactor);
         } catch (GeneralSecurityException gse) {
             throw new UndeclaredThrowableException(gse);
         }
     }
 
     /**
-     * insert `transIdInHex` into middle offset of `timeInHex` and hash using SHA-512
+     * combine timestamp and transactionId => moving factor
+     * insert transIdInHex` into middle offset of `timeInHex` and hash using SHA-512
      */
     private static String combineFactors(String timeInHex, String transIdInHex) {
         String input = new StringBuilder(timeInHex).insert(timeInHex.length() / 2, transIdInHex).toString();
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            MessageDigest md = MessageDigest.getInstance(HashAlgorithm.SHA_512.getValue());
             byte[] messageDigest = md.digest(input.getBytes());
             BigInteger no = new BigInteger(1, messageDigest);
             return StringUtils.leftPad(no.toString(16), 32, '0');

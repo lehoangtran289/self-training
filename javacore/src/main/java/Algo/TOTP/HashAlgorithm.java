@@ -13,7 +13,8 @@ import java.util.Map;
 public enum HashAlgorithm {
     HMAC_SHA_1("HmacSHA1"),
     HMAC_SHA_256("HmacSHA256"),
-    HMAC_SHA_512("HmacSHA512");
+    HMAC_SHA_512("HmacSHA512"),
+    SHA_512("SHA-512");
 
     private final String value;
 

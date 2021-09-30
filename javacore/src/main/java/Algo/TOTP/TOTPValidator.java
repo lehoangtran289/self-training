@@ -11,15 +11,23 @@ import org.apache.commons.lang3.StringUtils;
 public class TOTPValidator {
     private int syncSteps = TOTPConfig.DEFAULT_SYNC_STEPS;
 
+    /**
+     * validate TOTP at current system time
+     */
     public boolean isOTPValid(byte[] key, long timeStepSize, int digits, HashAlgorithm hashAlgorithm,
                               String transactionId, String otpValue) {
         return isOTPValid(key, timeStepSize, digits, hashAlgorithm, transactionId, otpValue, System.currentTimeMillis());
     }
 
+    /**
+     * validate TOTP at specific `validateTime`
+     */
     public boolean isOTPValid(byte[] key, long timeStepSize, int digits, HashAlgorithm hashAlgorithm,
                               String transactionId, String otpValue, long validateTime) {
-        TOTPGenerator totpGenerator = new TOTPGenerator(key).timeStepSize(timeStepSize)
-                .digits(digits).hashAlgo(hashAlgorithm);
+        TOTPGenerator totpGenerator = new TOTPGenerator(key)
+                .timeStepSize(timeStepSize)
+                .digits(digits)
+                .hashAlgo(hashAlgorithm);
         for (int i = -syncSteps; i <= syncSteps; ++i) {
             long timestamp = validateTime + (i * timeStepSize);
             String generatedOTP = totpGenerator.generateTOTP(timestamp, transactionId);

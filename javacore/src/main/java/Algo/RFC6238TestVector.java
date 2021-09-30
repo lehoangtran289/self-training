@@ -13,31 +13,6 @@ import static Algo.TOTP.CommonUtils.hexStrToBytes;
 public class RFC6238TestVector {
 
     public static void main(String[] args) {
-//        LocalDateTime localDateTime = LocalDateTime.of(LocalDate.of(2040, 12, 12), LocalTime.of(12, 12));
-//        ZonedDateTime zdt = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
-//
-//        long T = Math.floorDiv(zdt.toInstant().toEpochMilli(), TimeUnit.SECONDS.toMillis(30));
-//        String timeInHex = Strings.padStart(Long.toHexString(T).toUpperCase(), 16, '0');
-//        String timeAndTransIdInHex = combineFactors(Long.toHexString(T).toUpperCase(), strToHexStr
-//        ("transactionId")).substring(0, 16);
-//
-//        System.out.println(T);
-//        System.out.println(timeInHex);
-//        System.out.println(timeAndTransIdInHex);
-//        System.out.println(Arrays.toString(hexStrToBytes(timeInHex)));
-//        System.out.println(Arrays.toString(hexStrToBytes(timeAndTransIdInHex)));
-
-//        byte[] hmacResult = hexStrToBytes("1f8698690e02ca16618550ef7f19da8e945b555a");
-//        int offset = hmacResult[hmacResult.length - 1] & 0xf;   // 4 LSB
-//        int binCode = ((hmacResult[offset] & 0x7f) << 24) |
-//                ((hmacResult[offset + 1] & 0xff) << 16) |
-//                ((hmacResult[offset + 2] & 0xff) << 8) |
-//                (hmacResult[offset + 3] & 0xff);
-//
-//        // Generate TOTP
-//        int otp = binCode % ((int) Math.pow(10, 6));
-//        System.out.println(Strings.padStart(Integer.toString(otp), 6, '0'));  // 872921
-
         // RFC6238 Test
         // Seed for HMAC-SHA1 - 20 bytes
         String seed = "3132333435363738393031323334353637383930";
