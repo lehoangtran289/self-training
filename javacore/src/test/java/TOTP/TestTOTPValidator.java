@@ -5,10 +5,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
+import java.nio.charset.StandardCharsets;
 import java.time.*;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.concurrent.TimeUnit;
 
+import static Algo.TOTP.CommonUtils.bytesToHex;
 import static Algo.TOTP.CommonUtils.hexStrToBytes;
 import static org.junit.Assert.assertTrue;
 
@@ -20,7 +23,7 @@ public class TestTOTPValidator {
             long validateTime = testVector.getTestTime() + TimeUnit.SECONDS.toMillis(30); // drift 1 step
             assertTrue(TOTPValidator.builder().syncSteps(1).build().isOTPValid(
                     testVector.getKey(), testVector.getTimeStepSize(), testVector.getDigits(),
-                            testVector.getAlgorithm(), null, testVector.getTotp(), validateTime));
+                    testVector.getAlgorithm(), null, testVector.getTotp(), validateTime));
         }
     }
 
@@ -52,11 +55,23 @@ public class TestTOTPValidator {
         System.out.println(T);
 
         String timeInHex = StringUtils.leftPad(Long.toHexString(T).toUpperCase(), 16, '0');
-        System.out.println(timeInHex);
-        System.out.println(Arrays.toString(hexStrToBytes(timeInHex)));
+        System.out.println("timeinhex = " + timeInHex);
+        System.out.println("hex to bytes = " + Arrays.toString(hexStrToBytes(timeInHex)));
+        System.out.println("-> convert to string = " + bytesToHex(hexStrToBytes(timeInHex)));
+
+        System.out.println("to bytes utf8 = " + Arrays.toString(timeInHex.getBytes()));
+
+        //
+        String s = Base64.getEncoder().encodeToString(timeInHex.getBytes());
+        System.out.println(s);
+        // base64 encoded string to byte[]
+        byte[] decode = Base64.getDecoder().decode(s);
+        System.out.println(Arrays.toString(decode));
+        System.out.println(new String(timeInHex.getBytes(), StandardCharsets.UTF_8));
 
 //        System.out.println(timeAndTransIdInHex);
-//        String timeAndTransIdInHex = combineFactors(Long.toHexString(T).toUpperCase(), strToHexStr("transactionId")).substring(0, 16);
+//        String timeAndTransIdInHex = combineFactors(Long.toHexString(T).toUpperCase(), strToHexStr
+//        ("transactionId")).substring(0, 16);
 //        System.out.println(Arrays.toString(hexStrToBytes(timeAndTransIdInHex)));
     }
 

@@ -64,6 +64,7 @@ public class TOTPGenerator {
         return StringUtils.leftPad(Integer.toString(otp), digits, '0');
     }
 
+    //In any case the minimal recommended length for K is L bytes (as the hash output length).
     private byte[] computeHMACSHA(byte[] secretKey, byte[] movingFactor) {
         try {
             Mac hmac = Mac.getInstance(hashAlgorithm.getValue());
