@@ -108,7 +108,7 @@ public class ConsistentHashRing<T extends Node> {
             long h = 0;
             for (int i = 0; i < 4; i++) {
                 h <<= 8;
-                h |= ((int) digest[i]) & 0xFF;
+                h |= (digest[i]) & 0xFF;
             }
             return h;
         }
