@@ -3,7 +3,7 @@ package com.vds.springbootx.service;
 import com.vds.demofactories.FactoryBean;
 import com.vds.springbootx.entity.JournalEntry;
 import com.vds.springbootx.repository.JournalEntryRepository;
-import lombok.extern.slf4j.Slf4j;
+import com.vds.springbootx.utils.CustomLogger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -11,20 +11,21 @@ import java.text.ParseException;
 import java.util.List;
 
 @Service
-@Slf4j
 public class JournalEntryService {
+    private final CustomLogger log;
     private final FactoryBean factoryBean;
     private final JournalEntryRepository journalEntryRepository;
     private final String message;
 
-    public JournalEntryService(FactoryBean factoryBean, JournalEntryRepository journalEntryRepository,
+    public JournalEntryService(CustomLogger log, FactoryBean factoryBean, JournalEntryRepository journalEntryRepository,
                                @Value("${message}") String message) {
+        this.log = log;
         this.factoryBean = factoryBean;
         this.journalEntryRepository = journalEntryRepository;
         this.message = message;
         initData();
-        System.out.println(message);
-        System.out.println(factoryBean.getMessage());
+        this.log.info(message);
+        this.log.info(factoryBean.getMessage());
     }
 
     private void initData() {
