@@ -3,9 +3,9 @@ package com.vds.springbootx.utils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @Slf4j
 public class CustomLogger implements Logger {
     @Override

@@ -12,20 +12,20 @@ import java.util.List;
 
 @Service
 public class JournalEntryService {
-    private final CustomLogger log;
     private final FactoryBean factoryBean;
     private final JournalEntryRepository journalEntryRepository;
     private final String message;
+    private final CustomLogger log;
 
-    public JournalEntryService(CustomLogger log, FactoryBean factoryBean, JournalEntryRepository journalEntryRepository,
-                               @Value("${message}") String message) {
-        this.log = log;
+    public JournalEntryService(FactoryBean factoryBean, JournalEntryRepository journalEntryRepository,
+                               @Value("${message}") String message, CustomLogger log) {
         this.factoryBean = factoryBean;
         this.journalEntryRepository = journalEntryRepository;
         this.message = message;
+        this.log = log;
         initData();
-        this.log.info(message);
-        this.log.info(factoryBean.getMessage());
+        log.info(message);
+        log.info(factoryBean.getMessage());
     }
 
     private void initData() {
