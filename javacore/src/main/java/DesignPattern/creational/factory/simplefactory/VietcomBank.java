@@ -1,4 +1,4 @@
-package DesignPattern.creational.factory;
+package DesignPattern.creational.factory.simplefactory;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -11,10 +11,6 @@ import lombok.ToString;
 @Setter
 public class VietcomBank extends Bank {
     private String name;
-
-    static {
-        BankFactory.singleton().registerBank(BankType.VIETCOMBANK, new VietcomBank());
-    }
 
     @Override
     public String getName() {
