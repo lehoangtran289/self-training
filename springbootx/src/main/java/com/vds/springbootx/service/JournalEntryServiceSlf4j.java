@@ -10,6 +10,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -70,8 +71,8 @@ public class JournalEntryServiceSlf4j {
     private static ThreadPoolTaskExecutor initPool() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(100);
-        taskExecutor.setQueueCapacity(1000);
-        taskExecutor.setMaxPoolSize(500);
+        taskExecutor.setQueueCapacity(10000);
+        taskExecutor.setMaxPoolSize(30000);
         taskExecutor.setRejectedExecutionHandler((runnable, executor) -> {
             try {
                 log.info("ThreadPoolTaskExecutor current size {}", executor.getQueue().size());
@@ -99,18 +100,21 @@ public class JournalEntryServiceSlf4j {
     }
 
     public static void main(String[] args) {
-        ThreadPoolTaskExecutor taskExecutor = initPool();
-        for (int i = 0; i < 3000; ++i) {
-//            validatePool(i, taskExecutor);
-            int finalI = i;
-            taskExecutor.submit(() -> {
-                log.info("taskExecutor execute task #" + finalI +
-                        " // active: " + taskExecutor.getActiveCount() +
-                        " // q: " + taskExecutor.getThreadPoolExecutor().getQueue().size());
-                sleep(10000);
-                log.info("taskExecutor task #" + finalI + " done");
-            });
-            log.info("getCompletedTaskCount {}", taskExecutor.getThreadPoolExecutor().getCompletedTaskCount());
-        }
+
+        System.out.println(Arrays.toString(",".split(",")));
+
+//        ThreadPoolTaskExecutor taskExecutor = initPool();
+//        for (int i = 0; i < 30000; ++i) {
+////            validatePool(i, taskExecutor);
+//            int finalI = i;
+//            taskExecutor.execute(() -> {
+//                log.info("taskExecutor execute task #" + finalI +
+//                        " // active: " + taskExecutor.getActiveCount() +
+//                        " // q: " + taskExecutor.getThreadPoolExecutor().getQueue().size());
+//                sleep(10000);
+//                log.info("taskExecutor task #" + finalI + " done");
+//            });
+//            log.info("getCompletedTaskCount {}", taskExecutor.getThreadPoolExecutor().getCompletedTaskCount());
+//        }
     }
 }
