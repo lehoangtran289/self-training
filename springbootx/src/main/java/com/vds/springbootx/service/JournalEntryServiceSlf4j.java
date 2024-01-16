@@ -1,6 +1,5 @@
 package com.vds.springbootx.service;
 
-import com.vds.demofactories.FactoryBean;
 import com.vds.springbootx.entity.JournalEntry;
 import com.vds.springbootx.repository.JournalEntryRepository;
 import com.vds.springbootx.utils.CustomLogger;
@@ -19,7 +18,7 @@ public class JournalEntryServiceSlf4j {
     private static final long MAX_WAIT_TIME = 10000L;
     private final JournalEntryRepository journalEntryRepository;
 
-    public JournalEntryServiceSlf4j(FactoryBean factoryBean, JournalEntryRepository journalEntryRepository,
+    public JournalEntryServiceSlf4j(JournalEntryRepository journalEntryRepository,
                                     @Value("${message}") String message) {
         this.journalEntryRepository = journalEntryRepository;
         initData();

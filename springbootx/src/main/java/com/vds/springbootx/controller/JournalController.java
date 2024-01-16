@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
 
 @RestController
 @Slf4j
@@ -22,10 +24,23 @@ public class JournalController {
         this.journalEntryService = journalEntryService;
     }
 
-    @GetMapping("/journal")
-    @Transactional
-    public ResponseEntity<List<JournalEntry>> getAll() {
-        return ResponseEntity.ok(journalEntryService.getAllJournals());
+    public void worker() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        log.info("done");
+    }
+
+    @GetMapping("/async")
+    public CompletableFuture<?> getAll() {
+        return CompletableFuture.runAsync(this::worker, Executors.newFixedThreadPool(100));
+    }
+
+    @GetMapping("/sync")
+    public void getAllSync() {
+        worker();
     }
 
     @GetMapping("/test")

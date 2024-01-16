@@ -1,6 +1,5 @@
 package com.vds.springbootx.service;
 
-import com.vds.demofactories.FactoryBean;
 import com.vds.springbootx.entity.JournalEntry;
 import com.vds.springbootx.repository.JournalEntryRepository;
 import com.vds.springbootx.utils.CustomLogger;
@@ -12,20 +11,17 @@ import java.util.List;
 
 @Service
 public class JournalEntryService {
-    private final FactoryBean factoryBean;
     private final JournalEntryRepository journalEntryRepository;
     private final String message;
     private final CustomLogger log;
 
-    public JournalEntryService(FactoryBean factoryBean, JournalEntryRepository journalEntryRepository,
+    public JournalEntryService(JournalEntryRepository journalEntryRepository,
                                @Value("${message}") String message, CustomLogger log) {
-        this.factoryBean = factoryBean;
         this.journalEntryRepository = journalEntryRepository;
         this.message = message;
         this.log = log;
         initData();
         log.info(message);
-        log.info(factoryBean.getMessage());
     }
 
     private void initData() {
